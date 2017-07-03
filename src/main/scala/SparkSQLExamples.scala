@@ -1,4 +1,5 @@
 import org.apache.spark.sql.{Dataset, SparkSession}
+import org.apache.spark.sql.SQLContext
 import spark.examples.VehicleStopBase
 
 /**
