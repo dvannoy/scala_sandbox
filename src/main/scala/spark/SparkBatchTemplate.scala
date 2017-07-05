@@ -1,3 +1,5 @@
+package spark
+
 import java.lang.management.ManagementFactory
 
 import org.apache.spark.{SparkConf, SparkContext}

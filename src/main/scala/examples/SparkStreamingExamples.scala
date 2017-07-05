@@ -1,14 +1,16 @@
+package examples
+
 import java.lang.management.ManagementFactory
 
-import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.streaming.{Seconds, StreamingContext}
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
   * Created by dustinvannoy on 3/19/17.
   */
 object SparkStreamingExamples {
 
-  //val logFile = "file:///data1/tmp/vehicle_stops_2016_datasd.csv" // Should be some file on your system
+  val logFilePath = "file:///data1/tmp/streaming_example/input" // Should be some file on your system
   val streamingEndpointBase = "localhost"
   val port = 3001
 
@@ -22,9 +24,12 @@ object SparkStreamingExamples {
   def main(args: Array[String]) {
     val sc = new SparkContext(conf)
     val ssc = new StreamingContext(sc, batchDuration )
-    //val input = sc.textFile(logFile)
 
-    val input = ssc.socketTextStream(streamingEndpointBase, port)
+    // source from text files being added to folder
+    val input = ssc.textFileStream(logFilePath)
+
+    // source from streaming text endpoint/socket
+    //val input = ssc.socketTextStream(streamingEndpointBase, port)
 
     input.print()
 

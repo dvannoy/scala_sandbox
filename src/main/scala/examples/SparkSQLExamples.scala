@@ -1,6 +1,6 @@
-import org.apache.spark.sql.{Dataset, SparkSession}
-import org.apache.spark.sql.SQLContext
-import spark.examples.VehicleStopBase
+package examples
+
+import org.apache.spark.sql.SparkSession
 
 /**
   * Created by dustinvannoy on 3/19/17.
@@ -19,7 +19,7 @@ object SparkSQLExamples extends App {
   // For implicit conversions like converting RDDs to DataFrames
   import spark.implicits._
 
-  val cvDF = spark.read.csv("file:///data1/tmp/vehicle_stops_2016_datasd_clean").as[VehicleStopBase]
+  val cvDF = spark.read.option("header","true").csv("file:///data1/tmp/vehicle_stops_2016_datasd.csv").as[VehicleStopRaw]
   val r = cvDF.show()
 
 

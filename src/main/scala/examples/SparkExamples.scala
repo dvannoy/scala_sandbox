@@ -1,8 +1,8 @@
+package examples
+
 import java.lang.management.ManagementFactory
 
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkConf
-import spark.examples._
+import org.apache.spark.{SparkConf, SparkContext}
 
 import scala.util.Try
 
@@ -43,8 +43,8 @@ object SparkExamples {
     }
 
     // Save clean csv with only columns that are always populated
-    val vehicleStopText = vehicleStopRDD.map(v => Array(v.stopId, v.stopCause, v.serviceArea, v.subjectRace, v.subjectSex, v.subjectAge, v.timestamp, v.stopDate, v.stopTime))
-    vehicleStopText.map(a => a.mkString(",")).saveAsTextFile("file:///data1/tmp/vehicle_stops_2016_datasd_clean")
+    //  val vehicleStopText = vehicleStopRDD.map(v => Array(v.stopId, v.stopCause, v.serviceArea, v.subjectRace, v.subjectSex, v.subjectAge, v.timestamp, v.stopDate, v.stopTime))
+    //  vehicleStopText.map(a => a.mkString(",")).saveAsTextFile("file:///data1/tmp/vehicle_stops_2016_datasd_clean")
 
     // Example transformations and aggregations
     val keyedByViolationType = vehicleStopRDD.keyBy(a => (a.stopDate, a.stopCause)).cache()
